@@ -12,6 +12,7 @@ import Login from '../components/screens/login';
 import Monitor from '../components/screens/monitor';
 import MonitorAccounts from '../components/screens/monitor/accounts';
 import MonitorTransactions from '../components/screens/monitor/transactions';
+import MonitorNetwork from '../components/screens/monitor/network';
 import Register from '../components/screens/register';
 import RegisterDelegate from '../components/screens/registerDelegate';
 import SecondPassphrase from '../components/screens/secondPassphrase';
@@ -173,6 +174,12 @@ export default {
   monitorAccounts: {
     path: '/monitor/accounts',
     component: MonitorAccounts,
+    isPrivate: false,
+    forbiddenTokens: [tokenMap.BTC.key],
+  },
+  monitorNetwork: {
+    path: '/monitor/network',
+    component: MonitorNetwork,
     isPrivate: false,
     forbiddenTokens: [tokenMap.BTC.key],
   },

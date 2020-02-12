@@ -187,6 +187,21 @@ const liskServiceApi = {
     path: '/api/v1/network/status',
   }),
 
+  getNetworkStatistics: async ({ networkConfig }) => liskServiceGet({
+    networkConfig,
+    path: '/api/v1/network/statistics',
+    transformResponse: response => response.data,
+  }),
+
+  getConnectedPeers: async ({ networkConfig }, searchParams) => liskServiceGet({
+    networkConfig,
+    path: '/api/v1/peers/connected',
+    searchParams: {
+      limit: DEFAULT_LIMIT,
+      ...searchParams,
+    },
+  }),
+
   listenToBlockchainEvents: ({ networkConfig, event, callback }) => {
     const socket = io(
       `${liskServiceApi.getLiskServiceUrl(networkConfig)}/blockchain`,
@@ -198,6 +213,7 @@ const liskServiceApi = {
       socket.close();
     };
   },
+
 };
 
 export default liskServiceApi;
